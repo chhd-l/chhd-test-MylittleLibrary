@@ -1,23 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
+import UglyWorld from "./commpents/UglyWorld";
+
+interface ListNodeType {
+  type: string,
+  children: string
+}
+
+const arrType = [{
+  type:'div',
+  children: 'hhh'
+},{
+  type:'a',
+  children: 'hhh'
+},{
+  type:'span',
+  children: 'hhh'
+},{
+  type:'p',
+  children: 'hhh'
+}]
+
+const listNode = (arr: ListNodeType[]) => {
+    if(!arr.length) return
+    return arr.map((item: ListNodeType) => {
+     return React.createElement(
+        item.type,
+        {key: item.type, children: item.children}
+      )
+    })
+}
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>learn react</div>
+        <UglyWorld name='wd' />
+        <>
+          {listNode(arrType)}
+        </>
       </header>
     </div>
   );
